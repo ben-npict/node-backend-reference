@@ -9,7 +9,7 @@ const pool = new Pool({
     user: 'postgres', // Your PostgreSQL username
     host: 'localhost',
     database: 'restaurants_db', // The database you created
-    password: '', // Your PostgreSQL password
+    password: 'anypassword', // Your PostgreSQL password
     port: 5432,
 });
 
@@ -20,9 +20,11 @@ app.get('/', (req, res) => {
 	res.send('Hello from Node.js!'); 
 });
 
-app.listen(port, () => { 
-	console.log(`Server running at http://localhost:${port}`); 
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+}
 
 app.get('/about', (req, res) => { 
 	res.send('This API is created by Tommy!'); 
@@ -116,3 +118,6 @@ app.put('/restaurants/:id', async (req, res) => {
     }
 });
 
+
+// Export the app for testing
+module.exports = app;
