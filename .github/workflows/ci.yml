@@ -40,7 +40,7 @@ jobs:
       - name: Run tests
         run: cd backend; npm test
         env:
-          PG_HOST: localhost
+          PG_HOST: postgres
           PG_USER: postgres
           PG_PORT: 5432
           PG_DATABASE: restaurants_db
