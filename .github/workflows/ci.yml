@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      db:
+      postgres:
         image: postgres:15
         env:
-          POSTGRES_DB: restaurants_db
+          POSTGRES_DB: postgres
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: >-
@@ -43,5 +43,5 @@ jobs:
           PG_HOST: localhost
           PG_USER: postgres
           PG_PORT: 5432
-          PG_DATABASE: restaurants_db
-          PG_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          PG_DATABASE: postgres
+          PG_PASSWORD: postgres

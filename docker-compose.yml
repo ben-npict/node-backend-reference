@@ -1,5 +1,5 @@
 services:
-  db:
+  postgres:
     image: postgres:latest
     environment:
       POSTGRES_DB: postgres
@@ -13,7 +13,7 @@ services:
       - '5432:5432'
   node-backend:
     build: backend
-    depends_on: [ db ]
+    depends_on: [ postgres ]
     ports:
       - '3000:3000'
   frontend:
