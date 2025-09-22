@@ -7,14 +7,32 @@ const port = 3000;
 // Configure the database connection pool
 const pool = new Pool({
     user: 'postgres', // Your PostgreSQL username
-    host: 'localhost',
-    database: 'restaurants_db', // The database you created
-    password: 'anypassword', // Your PostgreSQL password
+    host: 'db',
+    database: 'postgres', // The database you created
+    password: 'postgres', // Your PostgreSQL password
     port: 5432,
 });
 
 app.use(express.json());
 
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
 
 app.get('/', (req, res) => { 
 	res.send('Hello from Node.js!'); 
@@ -29,11 +47,6 @@ if (process.env.NODE_ENV !== 'test') {
 app.get('/about', (req, res) => { 
 	res.send('This API is created by Tommy!'); 
 });
-
-let restaurants = [
-	{ id: 1, name: "Pizza Palace", cuisine: "Italian", rating: 4.5 },
-	{ id: 2, name: "Sushi Central", cuisine: "Japanese", rating: 4.8 }
-];
 
 app.get('/restaurants', async (req, res) => {
     try {
@@ -93,7 +106,6 @@ app.delete('/restaurants/:id', async (req, res) => {
         res.status(500).json({ error: "An internal server error occurred" });
     }
 });
-
 
 app.put('/restaurants/:id', async (req, res) => {
     const { id } = req.params;

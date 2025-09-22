@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3000'; // change if different
+const API_BASE = 'https://backend-8s4cph3pc-ben-npicts-projects.vercel.app'; // change if different
 let table;
 
 function actionButtons(id){
@@ -15,4 +15,17 @@ function initTableWithStatic(){
   table = new DataTable('#restaurantsTable', { data: rows });
 }
 
-document.addEventListener('DOMContentLoaded', initTableWithStatic);
+async function fetchRestaurants(){
+  const res = await fetch(`${API_BASE}/restaurants`);
+  if(!res.ok) throw new Error('Failed to load restaurants');
+  return await res.json();
+}
+async function initTableFromApi(){
+  const data = await fetchRestaurants();
+  const rows = data.map(r => [r.name, r.cuisine, r.rating, actionButtons(r.id)]);
+  if(table) table.destroy();
+  table = new DataTable('#restaurantsTable', { data: rows });
+}
+
+document.addEventListener('DOMContentLoaded', initTableFromApi);
+// document.addEventListener('DOMContentLoaded', initTableWithStatic);
