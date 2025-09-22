@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
+      db:
         image: postgres:15
         env:
           POSTGRES_DB: restaurants_db
@@ -40,7 +40,7 @@ jobs:
       - name: Run tests
         run: cd backend; npm test
         env:
-          PG_HOST: postgres
+          PG_HOST: localhost
           PG_USER: postgres
           PG_PORT: 5432
           PG_DATABASE: restaurants_db
