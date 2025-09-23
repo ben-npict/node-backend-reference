@@ -1,6 +1,4 @@
-// Use Environment variable or default to localhost
-const API_BASE = process.env.API_BASE || 'http://localhost:3000';
-
+// Load API_BASE from config.js instead.
 
 let table;
 
