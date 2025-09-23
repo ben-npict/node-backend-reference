@@ -11,6 +11,7 @@ const pool = new Pool({
     database: process.env.PG_DATABASE || 'postgres',
     password: process.env.PG_PASSWORD || 'postgres',
     port: process.env.PG_PORT || 5432,
+    ssl: process.env.PG_SSL === 'true' ? true : false,
 });
 
 app.use(express.json());
