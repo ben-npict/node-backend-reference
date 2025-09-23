@@ -28,18 +28,18 @@
   <div class="container py-4">
     <h1 class="mb-3">Restaurants</h1>
 
-    <form id="createForm" class="row g-2 align-items-end mb-3">
+    <form id="createForm" class="row g-2 align-items-end mb-3" autocomplete="off">
       <div class="col-sm-4">
         <label class="form-label" for="name">Name</label>
-        <input class="form-control" id="name" required>
+        <input class="form-control" id="name" name="name" required autocomplete="off">
       </div>
       <div class="col-sm-4">
         <label class="form-label" for="cuisine">Cuisine</label>
-        <input class="form-control" id="cuisine" required>
+        <input class="form-control" id="cuisine" name="cuisine" required autocomplete="off">
       </div>
       <div class="col-sm-2">
         <label class="form-label" for="rating">Rating (1–5)</label>
-        <input class="form-control" id="rating" type="number" min="1" max="5" required>
+        <input class="form-control" id="rating" name="rating" type="number" min="1" max="5" required autocomplete="off">
       </div>
       <div class="col-sm-2 d-grid">
         <button class="btn btn-primary" type="submit">Add</button>
