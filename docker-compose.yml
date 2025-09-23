@@ -10,12 +10,18 @@ services:
       test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
       interval: 10s
     ports:
-      - '5432:5432'
+      - '5433:5433'
   node-backend:
     build: backend
     depends_on: [ postgres ]
     ports:
       - '3000:3000'
+    environment:
+      PG_HOST: postgres
+      PG_DATABASE: postgres
+      PG_USER: postgres
+      PG_PASSWORD: postgres
+      PG_PORT: 5433
   frontend:
     build: frontend
     depends_on: [ node-backend ]
