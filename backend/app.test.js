@@ -5,9 +5,9 @@ const { Pool } = require('pg');
 // Create a pool for testing.
 // In a real-world scenario, you might use a separate test database.
 const pool = new Pool({
-    user: 'postgres',
+    user: process.env.PG_USER || 'postgres',
     host: process.env.PG_HOST || '127.0.0.1', 
-    database: 'postgres',
+    database: process.env.PG_DATABASE || 'postgres',
     password: process.env.PG_PASSWORD || 'postgres',
     port: 5432,
 });

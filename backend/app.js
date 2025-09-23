@@ -6,11 +6,11 @@ const port = 3000;
 
 // Configure the database connection pool
 const pool = new Pool({
-    user: 'postgres', // Your PostgreSQL username
-    host: process.env.PG_HOST || '127.0.0.1',
-    database: 'postgres', // The database you created
-    password: 'postgres', // Your PostgreSQL password
-    port: 5432,
+    user: process.env.PG_USER || 'postgres',
+    host: process.env.PG_HOST || '127.0.0.1', 
+    database: process.env.PG_DATABASE || 'postgres',
+    password: process.env.PG_PASSWORD || 'postgres',
+    port: process.env.PG_PORT || 5432,
 });
 
 app.use(express.json());
