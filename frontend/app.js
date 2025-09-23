@@ -1,4 +1,7 @@
-const API_BASE = 'https://backend-8s4cph3pc-ben-npicts-projects.vercel.app'; // change if different
+// Use Environment variable or default to localhost
+const API_BASE = process.env.API_BASE || 'http://localhost:3000';
+
+
 let table;
 
 function actionButtons(id){

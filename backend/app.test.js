@@ -9,7 +9,8 @@ const pool = new Pool({
     host: process.env.PG_HOST || '127.0.0.1', 
     database: process.env.PG_DATABASE || 'postgres',
     password: process.env.PG_PASSWORD || 'postgres',
-    port: 5432,
+    port: process.env.PG_PORT || 5432,
+    ssl: process.env.PG_SSL === 'true' ? true : false,
 });
 
 // Jest hooks to manage the test lifecycle
